@@ -46,7 +46,7 @@ if (score === null) {
   };
 }
 
-  localStorage.getItem(JSON.parse(score));
+  localStorage.getItem(JSON.parse('score'));
 
 
    function playgame(playerMove){
@@ -78,6 +78,7 @@ if (score === null) {
      else if (playerMove === 'ROCK') {
     if (computerMove === 'ROCK') {
     result = 'TIE';
+
     } else if (computerMove === 'PAPER') {
     result = 'YOU LOSE';
     } else if (computerMove === 'SCISSORS') {
@@ -93,7 +94,7 @@ if (score === null) {
       score.ties +=1
     }
     
-   localStorage.setItem('score', JSON.stringify(score));
+   localStorage.setItem('score', JSON.stringify('score'));
 
     alert(`You Picked ${playerMove}. Computer picked ${computerMove}. ${result}
 Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
