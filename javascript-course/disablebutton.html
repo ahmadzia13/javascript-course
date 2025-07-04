@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/* disable button
+      
+   let buttons = document.querySelectorAll('.add-to-cart');
+
+
+buttons.forEach(function(button) {
+  button.addEventListener('click', function() {
+  
+    let addedMessage = document.createElement('div');
+    addedMessage.textContent = 'Added';
+    addedMessage.style.color = 'lightgreen';
+    addedMessage.style.fontWeight = '20px';
+  
+ 
+    button.parentNode.insertBefore(addedMessage, button);
+
+    
+    button.disabled = true;
+button.style.opacity = '0.5';
+
+    setTimeout(function() {
+      addedMessage.remove();
+    }, 2000);
+  });
+});
+
+
+
+/*
+connect button to cart
+
+
+
+let cartNumber = 0;
+
+// Select all add to cart buttons
+const buttons = document.querySelectorAll('.add-to-cart');
+
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    // Get the product card
+    const productCard = button.closest('.product-card');
+    // Get the quantity input value
+    const quantityInput = productCard.querySelector('.quantity');
+
+    let quantity = parseInt(quantityInput.value);
+
+    if (!isNaN(quantity) && quantity > 0) {
+      cartNumber += quantity;
+      console.log('Cart Number:', cartNumber);
+      // Update in HTML
+      document.getElementById('cart-number').innerText = cartNumber;
+    } else {
+      console.log('Invalid quantity');
+    }
+  });
+});
+  */
+
+
+
+
+
+
+
+  /*  disable and connnect to cart button
+let cartNumber = 0;
+
+let buttons = document.querySelectorAll('.add-to-cart');
+
+buttons.forEach(function(button) {
+  button.addEventListener('click', function() {
+    const productCard = button.closest('.product-card');
+    const quantitySelect = productCard.querySelector('select');
+    let quantity = parseInt(quantitySelect.value);
+
+    if (!isNaN(quantity) && quantity > 0) {
+     
+      cartNumber += quantity;
+      document.querySelector('.cart-number').innerText = cartNumber;
+
+      
+      let addedMessage = document.createElement('div');
+      addedMessage.textContent = 'Added';
+      addedMessage.style.color = 'lightgreen';
+      addedMessage.style.fontWeight = 'bold';
+
+      button.parentNode.insertBefore(addedMessage, button);
+
+     
+      button.disabled = true;
+      button.style.opacity = '0.5';
+
+      setTimeout(function() {
+        addedMessage.remove();
+      }, 2000);
+    } else {
+      console.log('Invalid quantity');
+    }
+  });
+});
+
+
+
+*/
+
+
+// this code is for disabling button when we click it plus
+//  connect button to cart that will increase it prize +
+//  it will aslo display total prize on site
+
+let cartNumber = 0;
+let totalPrice = 0;
+
+let buttons = document.querySelectorAll('.add-to-cart');
+
+buttons.forEach(function(button) {
+  button.addEventListener('click', function() {
+    const productCard = button.closest('.product-card');
+    const quantitySelect = productCard.querySelector('select');
+    const priceElement = productCard.querySelector('.product-price');
+    
+    let quantity = parseInt(quantitySelect.value);
+    let priceText = priceElement.textContent.trim();
+    let price = parseFloat(priceText.replace('$', ''));
+
+    if (!isNaN(quantity) && quantity > 0 && !isNaN(price)) {
+      // ✅ Increment cart number
+      cartNumber += quantity;
+      document.querySelector('.cart-number').innerText = cartNumber;
+
+      // ✅ Calculate total price
+      totalPrice += quantity * price;
+      document.getElementById('total-price').innerText = totalPrice.toFixed(2);
+
+      // ✅ Show "Added" message
+      let addedMessage = document.createElement('div');
+      addedMessage.textContent = 'Added';
+      addedMessage.style.color = 'lightgreen';
+      addedMessage.style.fontWeight = 'bold';
+
+      button.parentNode.insertBefore(addedMessage, button);
+
+      // ✅ Disable button
+      button.disabled = true;
+      button.style.opacity = '0.5';
+
+      // ✅ Disable select dropdown
+      quantitySelect.disabled = true;
+      quantitySelect.style.opacity = '0.5';
+
+      setTimeout(function() {
+        addedMessage.remove();
+      }, 2000);
+    } else {
+      console.log('Invalid quantity or price');
+    }
+  });
+});
+
+    </script>
+</body>
+</html>
